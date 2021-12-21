@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'mysql',
+    database: 'gg',
 });
 
 connection.connect();
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 const server = app.listen(8080, () => {
     console.log("就绪:", JSON.stringify(server.address()));
 })
-
+//http://192.168.3.216:8080/help?age=21
 app.get('/help', function (req, res) {
     console.log("-----url------", req.url);
     res.status(200);
