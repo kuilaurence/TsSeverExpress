@@ -39,7 +39,6 @@ app.get('/help', function (req, res) {
         var resJson = {
             code: 200,
             status: "success",
-            count: results.length,
             data: results
         }
         res.json(resJson);
