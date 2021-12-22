@@ -4,7 +4,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 const connection = mysql.createConnection({
-    host: 'localhost',
+    host: '192.168.3.216',
     user: 'root',
     password: 'root',
     database: 'gg',
