@@ -27,15 +27,15 @@ app.use(bodyParser.json());
 const server = app.listen(8080, () => {
     console.log("就绪:", JSON.stringify(server.address()));
 })
-//http://192.168.3.216:8080/help?age=21
+//http://192.168.3.216:8080/help?age=21&limit=2&offset=3
 app.get('/help', function (req, res) {
     console.log("-----url------", req.url);
     res.status(200);
     var parseObj = url.parse(req.url, true);
     var queryObj = parseObj.query;
-    var sql = 'SELECT * FROM student WHERE  age = ?';
-    connection.query(sql, [queryObj.age], function (error, results, fields) {
-        if (error) throw error;
+    var sql = `SELECT * FROM student WHERE  age = ${queryObj.age} LIMIT ${queryObj.limit ?? 100} OFFSET ${queryObj.offset ?? 0}`;//limit 单次取得数量   offset跳过的数量
+    connection.query(sql, function (error, results, fields) {
+        if (error) console.log(error);
         var resJson = {
             code: 200,
             status: "success",
