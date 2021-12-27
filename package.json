@@ -2,9 +2,9 @@
   "name": "sever",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "run": "ts-node",
+    "run": "ts-node ./src",
     "build": "tsc"
   },
   "keywords": [],

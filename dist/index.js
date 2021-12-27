@@ -9,10 +9,10 @@ var mysql_1 = __importDefault(require("mysql"));
 var express_1 = __importDefault(require("express"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var connection = mysql_1.default.createConnection({
-    host: 'localhost',
+    host: '192.168.3.216',
     user: 'root',
     password: 'root',
-    database: 'mysql',
+    database: 'gg',
 });
 connection.connect();
 var app = (0, express_1.default)();
@@ -29,19 +29,20 @@ app.use(body_parser_1.default.json());
 var server = app.listen(8080, function () {
     console.log("就绪:", JSON.stringify(server.address()));
 });
+//http://192.168.3.216:8080/help?age=21&limit=2&offset=3
 app.get('/help', function (req, res) {
+    var _a, _b;
     console.log("-----url------", req.url);
     res.status(200);
     var parseObj = url_1.default.parse(req.url, true);
     var queryObj = parseObj.query;
-    var sql = 'SELECT * FROM student WHERE name = ?';
-    connection.query(sql, [queryObj.name], function (error, results, fields) {
+    var sql = "SELECT * FROM student WHERE  age = ".concat(queryObj.age, " LIMIT ").concat((_a = queryObj.limit) !== null && _a !== void 0 ? _a : 100, " OFFSET ").concat((_b = queryObj.offset) !== null && _b !== void 0 ? _b : 0); //limit 单次取得数量   offset跳过的数量
+    connection.query(sql, function (error, results, fields) {
         if (error)
-            throw error;
+            console.log(error);
         var resJson = {
             code: 200,
             status: "success",
-            count: results.length,
             data: results
         };
         res.json(resJson);
