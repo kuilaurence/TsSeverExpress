@@ -27,6 +27,7 @@ app.use(bodyParser.json());
 const server = app.listen(8085, () => {
     console.log("就绪:", JSON.stringify(server.address()));
 })
+
 //http://192.168.3.216:8085/help?age=21&limit=2&offset=3
 app.get('/help', function (req, res) {
     console.log("-----url------", req.url);
@@ -45,6 +46,10 @@ app.get('/help', function (req, res) {
     });
 });
 
+app.post('/test', function (req, res) {
+    console.log(req.body);
+    res.send({ massage: "post successfully!" });
+});
 /**
  * 插入一行数据
  */
