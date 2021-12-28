@@ -24,10 +24,10 @@ app.all('*', function (req, res, next) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const server = app.listen(8080, () => {
+const server = app.listen(8085, () => {
     console.log("就绪:", JSON.stringify(server.address()));
 })
-//http://192.168.3.216:8080/help?age=21&limit=2&offset=3
+//http://192.168.3.216:8085/help?age=21&limit=2&offset=3
 app.get('/help', function (req, res) {
     console.log("-----url------", req.url);
     res.status(200);
